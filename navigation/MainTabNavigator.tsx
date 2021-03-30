@@ -1,15 +1,13 @@
-import {Ionicons} from '@expo/vector-icons';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Fontisto, Ionicons} from '@expo/vector-icons';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
+import ChatsScreen from '../screens/ChatsScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import {MainTabParamList, TabOneParamList, TabTwoParamList} from '../types';
-import {Fontisto} from '@expo/vector-icons';
 
 const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
 
@@ -35,7 +33,7 @@ export default function MainTabNavigator() {
             }}>
             <MainTab.Screen
                 name="Camera"
-                component={TabOneNavigator}
+                component={TabTwoNavigator}
                 options={{
                     tabBarIcon: ({color}) => <Fontisto name="camera" color={color} size={18}/>,
                     tabBarLabel: () => null
@@ -43,7 +41,7 @@ export default function MainTabNavigator() {
             />
             <MainTab.Screen
                 name="Chats"
-                component={TabTwoNavigator}
+                component={ChatsScreen}
             />
             <MainTab.Screen
                 name="Status"
@@ -72,7 +70,7 @@ function TabOneNavigator() {
         <TabOneStack.Navigator>
             <TabOneStack.Screen
                 name="TabOneScreen"
-                component={TabOneScreen}
+                component={ChatsScreen}
             />
         </TabOneStack.Navigator>
     );
