@@ -5,17 +5,16 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         margin: 10,
-        width: '100%'
     },
     rightContainer: {
+        flex: 1,
         flexDirection: "column",
         justifyContent: "space-around",
-        width: '100%'
     },
     topContainer: {
         flexDirection: "row",
-        alignItems: "center",
-        width: '75%'
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     avatar: {
         width: 60,

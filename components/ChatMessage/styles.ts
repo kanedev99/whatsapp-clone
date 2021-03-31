@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     message: {
-
+        color: 'black'
     },
     createdAt: {
         color: 'grey',
