@@ -1,11 +1,11 @@
-import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import {ColorSchemeName, View} from 'react-native';
+import { ColorSchemeName, View } from 'react-native';
 import Colors from '../constants/Colors';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
-import {RootStackParamList} from '../types';
+import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import {
@@ -15,15 +15,16 @@ import {
     FontAwesome5
 } from '@expo/vector-icons';
 import ChatRoomScreen from "../screens/ChatRoomScreen";
+import ContactsScreen from '../screens/ContactsScreen';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
+export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <RootNavigator/>
+            <RootNavigator />
         </NavigationContainer>
     );
 }
@@ -57,8 +58,8 @@ function RootNavigator() {
                             justifyContent: "space-between",
                             marginRight: 10
                         }}>
-                            <AntDesign name="search1" size={24} color="white"/>
-                            <MaterialCommunityIcons name="dots-vertical" size={24} color="white"/>
+                            <AntDesign name="search1" size={24} color="white" />
+                            <MaterialCommunityIcons name="dots-vertical" size={24} color="white" />
                         </View>
                     )
                 }}
@@ -66,7 +67,7 @@ function RootNavigator() {
             <Stack.Screen
                 name="ChatRoom"
                 component={ChatRoomScreen}
-                options={({route}) => ({
+                options={({ route }) => ({
                     title: route.params.name,
                     headerRight: () => (
                         <View style={{
@@ -75,14 +76,18 @@ function RootNavigator() {
                             justifyContent: "space-around",
                             marginRight: 10
                         }}>
-                            <MaterialIcons name="call" size={24} color="white"/>
-                            <FontAwesome5 name="video" size={24} color="white"/>
-                            <MaterialCommunityIcons name="dots-vertical" size={24} color="white"/>
+                            <MaterialIcons name="call" size={24} color="white" />
+                            <FontAwesome5 name="video" size={24} color="white" />
+                            <MaterialCommunityIcons name="dots-vertical" size={24} color="white" />
                         </View>
                     )
                 })}
             />
-            <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
+            <Stack.Screen
+                name="Contacts"
+                component={ContactsScreen}
+            />
+            <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
         </Stack.Navigator>
     );
 }
