@@ -5,6 +5,12 @@ export type RootStackParamList = {
   ChatRoom: undefined;
 };
 
+export type AuthParamList = {
+  Splash: undefined;
+  Signin: undefined;
+  Signup: undefined;
+};
+
 export type MainTabParamList = {
   Camera: undefined;
   Chats: undefined;

@@ -1,38 +1,54 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { ColorSchemeName, View } from 'react-native';
-import Colors from '../constants/Colors';
-
-import NotFoundScreen from '../screens/NotFoundScreen';
-import { RootStackParamList } from '../types';
-import MainTabNavigator from './MainTabNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
 import {
     AntDesign,
+    FontAwesome5,
     MaterialCommunityIcons,
-    MaterialIcons,
-    FontAwesome5
+    MaterialIcons
 } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
+import { View } from 'react-native';
+import Colors from '../constants/Colors';
 import ChatRoomScreen from "../screens/ChatRoomScreen";
+import ChatsScreen from '../screens/ChatsScreen';
 import ContactsScreen from '../screens/ContactsScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import SplashScreen from '../screens/SplashScreen';
+import { AuthParamList, RootStackParamList } from '../types';
+import MainTabNavigator from './MainTabNavigator';
 
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+
+export default function Navigation() {
     return (
-        <NavigationContainer
-            linking={LinkingConfiguration}
-            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <NavigationContainer>
             <RootNavigator />
         </NavigationContainer>
     );
 }
 
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
-const Stack = createStackNavigator<RootStackParamList>();
+// const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<AuthParamList>();
 
+const AuthNavigator = () => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}>
+            <Stack.Screen
+                name="Splash"
+                component={SplashScreen} />
+            <Stack.Screen
+                name="Signin"
+                component={SignInScreen} />
+            <Stack.Screen
+                name="Signup"
+                component={SignUpScreen} />
+        </Stack.Navigator>
+    );
+};
 
 function RootNavigator() {
     return (
@@ -68,7 +84,7 @@ function RootNavigator() {
                 name="ChatRoom"
                 component={ChatRoomScreen}
                 options={({ route }) => ({
-                    title: route.params.name,
+                    // title: route.params.title,
                     headerRight: () => (
                         <View style={{
                             flexDirection: "row",

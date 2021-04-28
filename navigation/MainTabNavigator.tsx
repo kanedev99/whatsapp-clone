@@ -16,7 +16,7 @@ export default function MainTabNavigator() {
 
     return (
         <MainTab.Navigator
-            initialRouteName="TabOne"
+            initialRouteName="Camera"
             tabBarOptions={{
                 activeTintColor: Colors[colorScheme].background,
                 style: {
